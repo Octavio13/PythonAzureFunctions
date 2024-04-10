@@ -1,0 +1,1 @@
+##You can authorize a BlobServiceClient object by using a Microsoft Entra authorization token, an account access key, or a shared access signature (SAS).

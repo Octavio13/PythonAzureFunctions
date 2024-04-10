@@ -1,0 +1,18 @@
+{
+    "blob": {
+        "connection_string": "myconfigurationnotyetsetup",
+        "account": "http://mystorageaccount.blob.core.windows.net"
+    },
+
+    "cosmos":{
+        "connection_string": "myconfigurationnotyetsetup"
+    },
+
+    "sql_server":{
+        "connection_string_basic": "mssql+pyodbc://@DESKTOP-MG5HQUM/Learning_Database?driver=ODBC+Driver+17+for+SQL+Server&Trusted_Connection=yes"
+    },
+
+    "http_service": "https://jsonplaceholder.typicode.com/posts"
+
+    
+}

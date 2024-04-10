@@ -1,0 +1,95 @@
+
+Function runs fine locally when setting the execution policy to unrestricted.
+windows firewall does activate after this
+the configuration should be set to restricted after launch and would ideally be done by the lauch.json file automatically.
+for more information:
+https://learn.microsoft.com/en-us/troubleshoot/azure/active-directory/cannot-run-scripts-powershell
+https://www.youtube.com/watch?v=RD3vUCdRf8o
+
+https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=python-v2%2Cisolated-process%2Cnodejs-v4%2Cfunctionsv2&pivots=programming-language-python
+
+
+
+pip show is very useful to see where the package was installed.
+
+
+
+pip install azure-storage-blob azure-identity
+pip install azure-storage-blob[aio]
+pip install pyodbc
+
+to use Function
+you need to install 
+
+
+    # you can rewrite this to use'with' which is a disposable object (you won't need to close the connection manually)
+        # also you cna use asyncs 
+
+# https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-timer?tabs=python-v2%2Cisolated-process%2Cnodejs-v4&pivots=programming-language-python
+
+sql alchemy returns #returns a CursorResult object
+sql alchemy connections are recommended when there is more ORM fetaures being used, it is not very neccessary for simple queries.
+
+
+To use blob storage you need to install
+pip install azure-storage-blob azure-identity
+
+//Default
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Attach to Python Functions",
+      "type": "python",
+      "request": "attach",
+      "port": 9091,
+      "pythonPath": "C:\\Python39\\python.exe",
+      "preLaunchTask": "func: host start"
+    }
+  ]
+}
+
+
+
+
+
+
+
+
+
+//first attempt
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Attach to Python Functions",
+      "type": "debugpy",
+      "request": "attach",
+      "port": 9091,
+      "preLaunchTask": "firstPreLaunchTask",
+    }
+  ],
+  "tasks": [
+    {
+      "label": "firstPreLaunchTask",
+      "type": "shell",
+      "command": "powershell",
+      "args": ["-Command","Set-ExecutionPolicy -Scope Process -ExecutionPolicy Unrestricted"],
+      "group": {
+          "kind": "build",
+          "isDefault": true
+      }
+    },
+    {
+      "label": "secondPreLaunchTask",
+      "type": "shell",
+      "command": "python",
+      "args": ["func: host start"],
+      "dependsOn": "firstPreLaunchTask",
+      "group": {
+          "kind": "build",
+          "isDefault": true
+      }
+    }
+  ]
+}
